@@ -1,0 +1,175 @@
+:root {
+    --color1: #3e4451;
+    --color2: #868e96;
+    --color3: #212529;
+    --color4: #dee2e6;
+    --color5: #5e3e9e;
+    --color6: #5a626b;
+    --color7: #dee2e6;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: var(--color6);
+    font-size: large;
+}
+
+ul {
+    width: 100%;
+    height: 100%;
+    list-style: none;
+}
+
+li {
+    width: 100%;
+    height: 100%;
+    border: 2px solid grey;
+    margin-bottom: 20px;
+    border-radius: 0.75rem;
+    padding: 10px;
+}
+
+.container {
+    margin: 0 auto;
+
+    @media (min-width: 480px) {
+        width: 90vw;
+    }
+
+    @media (max-width: 480px) {
+        width: 95vw;
+    }
+
+    padding-top: 30px;
+
+}
+
+.backgroundFone {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 998;
+    background: var(--color6);
+}
+
+.list-group-item {
+    background-color: var(--color3);
+    position: relative;
+}
+
+.personFoto {
+    max-width: 30%;
+    max-height: 15vh;
+    border-radius: 10%;
+    margin-right: 10px;
+    float: left;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.5s;
+}
+
+.personFoto:hover {
+    transform: scale(1.05);
+}
+
+
+/* Вспомогательный класс для увеличения фото */
+.fotoWidth {
+    position: fixed;
+    max-width: 90vw;
+    max-height: 90vh;
+    z-index: 999;
+}
+.personInfo__container:not(:last-child){
+    margin-bottom: 10px;
+}
+.personInfo {
+    overflow: hidden;
+    border: 2px solid var(--color1);
+    border-radius: 0.75rem;
+    padding: 5px 25px 5px 5px;
+    background-color: var(--color5);
+    color: white;
+    text-align: justify;
+}
+.infoPointer {
+    cursor: pointer;
+}
+/* Вспомогательный класс для раскрытия блока */
+.hideElement {
+    display: none;
+}
+.noHideElement {
+    display: block;
+}
+
+.personData__container {
+    overflow: hidden;
+    max-height: 19vh;
+}
+
+/* Вспомогательный класс для раскрытия item */
+.personData__containerHelpclass {
+    max-height: none;
+}
+
+.personInfo__container {
+    position: relative;
+    z-index: 0;
+}
+
+.arrow {
+    transition: all .5s;
+    position: absolute;
+    cursor: pointer;
+}
+
+.arrow_item {
+    background-color: var(--color2);
+    border: 2px solid var(--color3);
+    border-radius: 50%;
+    padding: 5px;
+    bottom: -20px;
+    right: 0px;
+    z-index: 3;
+
+    @media (max-width: 480px) {
+        height: 20px;
+        width: 20px;
+        bottom: -15px;
+    }
+}
+.personTitle {
+    font-size: larger;
+    font-weight: 900;
+    color: var(--color7);
+}
+.arrow_item:hover {
+    background-color: var(--color6);
+    fill: white;
+}
+
+.arrow_data {
+    top: 0px;
+    right: 5px;
+    fill: white;
+}
+
+.arrow_data:hover {
+    fill: var(--color2);
+}
