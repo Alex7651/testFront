@@ -8,7 +8,7 @@ $(function () {
                 <div class="personData__container">
                     <div class="personData">
                         <img src="`+ (value.foto ? value.foto : "./content/nofoto.png") + `"
-                            class="img-fluid rounded personFoto" alt="...">
+                            class="personFoto" alt="...">
                     </div>
                 </div>
                 <svg class="arrow arrow_item" width="30" height="30" class="bi bi-chevron-double-down"
@@ -30,7 +30,7 @@ $(function () {
                     d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
                     </svg>`: ""
                     ) + `
-                    <div class="personInfo `+ (value.length > 3 ? "infoPointer" : "") + `">
+                    <div class="personInfo">
                         <span class="personTitle">${key}:</span>
                     </div>
                 </div>
@@ -73,19 +73,32 @@ $(function () {
     // 
 
     // Обработчик открытия более 4 li data
-    $(".list-group").on("click", ".personInfo__container", function (e) {
-        if (!e.target.classList.contains('personInfo__container')) {
-            // Обработчик появления
-            $(this).children(".personInfo").children(".hideElement").toggleClass("noHideElement")
-            $(this).children(".personInfo").children(".lastPersonGen").toggle()
-            // Обработик стрелки
-            $(this).children(".personInfo").toggleClass("rotateArrow")
-            if ($(this).children(".personInfo").hasClass("rotateArrow")) {
-                $(this).children(".arrow").css("rotate", "180deg")
-            } else {
-                $(this).children(".arrow").css("rotate", "0deg")
-            }
+    // $(".list-group").on("click", ".personInfo__container", function (e) {
+    //     if (e.target.classList.contains('personInfo__container')) {
+    //         // Обработчик появления
+    //         $(this).children(".personInfo").children(".hideElement").toggleClass("noHideElement")
+    //         $(this).children(".personInfo").children(".lastPersonGen").toggle()
+    //         // Обработик стрелки
+    //         $(this).children(".personInfo").toggleClass("rotateArrow")
+    //         if ($(this).children(".personInfo").hasClass("rotateArrow")) {
+    //             $(this).children(".arrow").css("rotate", "180deg")
+    //         } else {
+    //             $(this).children(".arrow").css("rotate", "0deg")
+    //         }
+    //     }
+    // })
+    $(".list-group").on("click", ".arrow_data", function () {
+        // Обработчик появления
+        $(this).parent().children(".personInfo").children(".hideElement").toggleClass("noHideElement")
+        $(this).parent().children(".personInfo").children(".lastPersonGen").toggle()
+        // Обработик стрелки
+        $(this).parent().children(".personInfo").toggleClass("rotateArrow")
+        if ($(this).parent().children(".personInfo").hasClass("rotateArrow")) {
+            $(this).parent().children(".arrow").css("rotate", "180deg")
+        } else {
+            $(this).parent().children(".arrow").css("rotate", "0deg")
         }
+
     })
 
     // Обработчик стрелки item
@@ -97,9 +110,14 @@ $(function () {
             $(this).parent().children(".arrow").css("rotate", "0deg")
         }
     })
+    // Обработчик стрелок по body
     $("body").click(function (e) {
         if (e.target.tagName == "BODY") {
-            $(".personData__containerHelpclass + .arrow").css("rotate", "0deg")
+            $(".hideElement").removeClass("noHideElement")
+            $(".lastPersonGen").show()
+            $(".personInfo").removeClass("rotateArrow")
+            $(".arrow_data").css("rotate", "0deg")
+            $(".arrow_item").css("rotate", "0deg")
             $(".personData__containerHelpclass").removeClass("personData__containerHelpclass")
         }
     })

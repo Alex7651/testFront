@@ -6,6 +6,7 @@
     --color5: #5e3e9e;
     --color6: #5a626b;
     --color7: #dee2e6;
+    --color8: #212529d3;
 
 }
 
@@ -17,13 +18,15 @@
 
 body,
 html {
-    width: 100%;
-    height: 100%;
+    min-width: 100%;
+    min-height: 100vh;
 }
 
 body {
-    background-color: var(--color6);
+    background: url(/content/fone.png);
+    background-size: fill;
     font-size: large;
+    backdrop-filter: blur(.5px);
 }
 
 ul {
@@ -43,6 +46,7 @@ li {
 
 .container {
     margin: 0 auto;
+    padding: 30px 0px;
 
     @media (min-width: 480px) {
         width: 90vw;
@@ -51,9 +55,6 @@ li {
     @media (max-width: 480px) {
         width: 95vw;
     }
-
-    padding-top: 30px;
-
 }
 
 .backgroundFone {
@@ -68,14 +69,14 @@ li {
 }
 
 .list-group-item {
-    background-color: var(--color3);
+    background-color: var(--color8);
     position: relative;
 }
 
 .personFoto {
     max-width: 30%;
     max-height: 15vh;
-    border-radius: 10%;
+    border-radius: 0.75rem;
     margin-right: 10px;
     float: left;
     cursor: pointer;
@@ -85,6 +86,7 @@ li {
 }
 
 .personFoto:hover {
+    border-radius: 0;
     transform: scale(1.05);
 }
 
@@ -92,13 +94,15 @@ li {
 /* Вспомогательный класс для увеличения фото */
 .fotoWidth {
     position: fixed;
-    max-width: 90vw;
-    max-height: 90vh;
+    max-width: 90%;
+    max-height: 80%;
     z-index: 999;
 }
-.personInfo__container:not(:last-child){
+
+.personInfo__container:not(:last-child) {
     margin-bottom: 10px;
 }
+
 .personInfo {
     overflow: hidden;
     border: 2px solid var(--color1);
@@ -108,13 +112,12 @@ li {
     color: white;
     text-align: justify;
 }
-.infoPointer {
-    cursor: pointer;
-}
+
 /* Вспомогательный класс для раскрытия блока */
 .hideElement {
     display: none;
 }
+
 .noHideElement {
     display: block;
 }
@@ -145,7 +148,7 @@ li {
     border: 2px solid var(--color3);
     border-radius: 50%;
     padding: 5px;
-    bottom: -20px;
+    bottom: -10px;
     right: 0px;
     z-index: 3;
 
@@ -153,11 +156,13 @@ li {
         bottom: -15px;
     }
 }
+
 .personTitle {
     font-size: larger;
     font-weight: 900;
     color: var(--color7);
 }
+
 .arrow_item:hover {
     background-color: var(--color6);
     fill: white;
