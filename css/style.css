@@ -23,7 +23,7 @@ html {
 }
 
 body {
-    background: url(./content/fone.png);
+    background: url(../content/fone.png);
     background-size: fill;
     font-size: large;
     backdrop-filter: blur(.5px);
