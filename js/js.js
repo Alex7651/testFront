@@ -37,7 +37,7 @@ $(function () {
                 `)
                 $.each(value, function (key, value) {
                     $(".personInfo:last").append(`
-                        <p class="personGen `+ (key > 2 ? "hideElement" : "") + `">${value}</p>
+                        <p class="personGen `+ (key > 2 ? "hideElement" : "") + `">&nbsp;&bull; ${value}</p>
                     `)
                 })
                 if (value.length > 3) {
@@ -54,12 +54,14 @@ $(function () {
     $(".list-group").on("click", ".personFoto", function () {
         $(this).toggleClass("fotoWidth")
         if ($(this).hasClass("fotoWidth")) {
-            $(this).css("left", `${50 - ($(this).width() * 100) / (2 * $("html").width())}%`)
-            $(this).css("top", `${50 - ($(this).height() * 100) / (2 * $("html").height())}%`)
+            $(this).css("left", `${50 - ($(this).width()*100) / (2*document.documentElement.clientWidth)}vw`)
+            $(this).css("top", `calc(${50 - ($(this).height()*100) / (2*document.documentElement.clientHeight)}vh + ${window.scrollY}px)`)
+            $("body").css("overflow", "hidden")
             $(".backgroundFone").css("display", "block")
         } else {
             $(this).css("left", `0`)
             $(this).css("top", `0`)
+            $("body").css("overflow", "unset")
             $(".backgroundFone").css("display", "none")
         }
     })
@@ -67,26 +69,10 @@ $(function () {
         $(".fotoWidth").css("left", `0`)
         $(".fotoWidth").css("top", `0`)
         $(".fotoWidth").removeClass("fotoWidth")
+        $("body").css("overflow", "unset")
         $(".backgroundFone").css("display", "none")
     })
 
-    // 
-
-    // Обработчик открытия более 4 li data
-    // $(".list-group").on("click", ".personInfo__container", function (e) {
-    //     if (e.target.classList.contains('personInfo__container')) {
-    //         // Обработчик появления
-    //         $(this).children(".personInfo").children(".hideElement").toggleClass("noHideElement")
-    //         $(this).children(".personInfo").children(".lastPersonGen").toggle()
-    //         // Обработик стрелки
-    //         $(this).children(".personInfo").toggleClass("rotateArrow")
-    //         if ($(this).children(".personInfo").hasClass("rotateArrow")) {
-    //             $(this).children(".arrow").css("rotate", "180deg")
-    //         } else {
-    //             $(this).children(".arrow").css("rotate", "0deg")
-    //         }
-    //     }
-    // })
     $(".list-group").on("click", ".arrow_data", function () {
         // Обработчик появления
         $(this).parent().children(".personInfo").children(".hideElement").toggleClass("noHideElement")
