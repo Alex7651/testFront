@@ -1,7 +1,6 @@
 $(function () {
     // Обработчик JSON
     $.getJSON("./json/data.json", function (data) {
-
         $.each(data, function (key, value) {
             $(".list-group").append(`
             <li class="list-group-item">
@@ -20,10 +19,10 @@ $(function () {
                 </svg>
             </li>
             `)
-            $.each(value.data, function (key, value) {
+            $.each(value.value, function (key1, value1) {
                 $(".personData:last").append(`
                 <div class="personInfo__container">
-                `+ (value.length > 3 ?
+                `+ (value1.length > 3 ?
                         `<svg class="arrow arrow_data" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                     class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                     <path
@@ -31,16 +30,16 @@ $(function () {
                     </svg>`: ""
                     ) + `
                     <div class="personInfo">
-                        <span class="personTitle">${key}:</span>
+                        <span class="personTitle">${value.title[key1]}:</span>
                     </div>
                 </div>
                 `)
-                $.each(value, function (key, value) {
+                $.each(value1, function (key2, value2) {
                     $(".personInfo:last").append(`
-                        <p class="personGen `+ (key > 2 ? "hideElement" : "") + `">&nbsp;&bull; ${value}</p>
+                        <p class="personGen `+ (key2 > 2 ? "hideElement" : "") + `">&nbsp;&bull; ${value2}</p>
                     `)
                 })
-                if (value.length > 3) {
+                if (value1.length > 3) {
                     $(".personInfo:last").append(`
                         <p class="lastPersonGen">...</p>
                     `)
@@ -54,8 +53,8 @@ $(function () {
     $(".list-group").on("click", ".personFoto", function () {
         $(this).toggleClass("fotoWidth")
         if ($(this).hasClass("fotoWidth")) {
-            $(this).css("left", `${50 - ($(this).width()*100) / (2*document.documentElement.clientWidth)}vw`)
-            $(this).css("top", `calc(${50 - ($(this).height()*100) / (2*document.documentElement.clientHeight)}vh + ${window.scrollY}px)`)
+            $(this).css("left", `${50 - ($(this).width() * 100) / (2 * document.documentElement.clientWidth)}vw`)
+            $(this).css("top", `calc(${50 - ($(this).height() * 100) / (2 * document.documentElement.clientHeight)}vh + ${window.scrollY}px)`)
             $("body").css("overflow", "hidden")
             $(".backgroundFone").css("display", "block")
         } else {
